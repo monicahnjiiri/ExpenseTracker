@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2 style="text-align: center; margin-bottom: 30px;">🔑 Login to Your Account</h2>
+    
+    <form method="POST" style="max-width: 400px; margin: 0 auto;">
+        <div class="form-group">
+            <label for="email">📧 Email Address:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">🔒 Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" class="btn btn-info">🚀 Login</button>
+            <a href="{{ url_for('register') }}" class="btn">Need an account? Register</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

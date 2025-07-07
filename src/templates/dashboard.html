@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 20px;">
+    <h2>📊 Welcome back, {{ session.user_name }}!</h2>
+    <p>Here's your financial overview</p>
+</div>
+
+<!-- Financial Stats -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <h3>${{ "%.2f"|format(total_income) }}</h3>
+        <p>💰 Total Income</p>
+    </div>
+    <div class="stat-card">
+        <h3>${{ "%.2f"|format(total_expenses) }}</h3>
+        <p>💸 Total Expenses</p>
+    </div>
+    <div class="stat-card">
+        <h3>${{ "%.2f"|format(savings) }}</h3>
+        <p>{% if savings >= 0 %}💚 Savings{% else %}⚠️ Deficit{% endif %}</p>
+    </div>
+    <div class="stat-card">
+        <h3>${{ "%.2f"|format(budget) }}</h3>
+        <p>🎯 Monthly Budget</p>
+    </div>
+</div>
+
+{% if total_expenses > budget and budget > 0 %}
+<div class="alert alert-error">
+    ⚠️ <strong>Budget Alert!</strong> You've exceeded your monthly budget by ${{ "%.2f"|format(total_expenses - budget) }}
+</div>
+{% endif %}
+
+<!-- Quick Actions -->
+<div class="card">
+    <h3 style="text-align: center; margin-bottom: 20px;">⚡ Quick Actions</h3>
+    <div style="text-align: center;">
+        <a href="{{ url_for('add_expense') }}" class="btn btn-danger">➖ Add Expense</a>
+        <a href="{{ url_for('add_income') }}" class="btn btn-success">➕ Add Income</a>
+        <a href="{{ url_for('settings') }}" class="btn btn-info">⚙️ Settings</a>
+    </div>
+</div>
+
+<!-- Recent Transactions -->
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+    <!-- Recent Expenses -->
+    <div class="card">
+        <h3 style="margin-bottom: 20px;">📤 Recent Expenses</h3>
+        <div class="transactions">
+            {% if recent_expenses %}
+                {% for expense in recent_expenses %}
+                <div class="transaction-item expense">
+                    <strong>${{ "%.2f"|format(expense.amount) }}</strong> - {{ expense.category }}
+                    <br><small>{{ expense.date }} - {{ expense.description or 'No description' }}</small>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; color: #666;">No expenses yet. Add your first expense!</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Recent Income -->
+    <div class="card">
+        <h3 style="margin-bottom: 20px;">📥 Recent Income</h3>
+        <div class="transactions">
+            {% if recent_income %}
+                {% for income in recent_income %}
+                <div class="transaction-item income">
+                    <strong>${{ "%.2f"|format(income.amount) }}</strong> - {{ income.source }}
+                    <br><small>{{ income.date }} - {{ income.description or 'No description' }}</small>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; color: #666;">No income yet. Add your first income entry!</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Automation Info -->
+<div class="card">
+    <h3 style="text-align: center;">🔔 Automated Alerts</h3>
+    <p style="text-align: center; margin: 20px 0;">
+        You'll receive weekly financial summaries every <strong>Sunday at 8 PM</strong><br>
+        and monthly reports on the <strong>1st of each month</strong>!
+    </p>
+    <div style="text-align: center;">
+        <span style="background: #e3f2fd; padding: 10px 20px; border-radius: 20px; color: #1565c0;">
+            📧 Alerts sent to: {{ session.user_email }}
+        </span>
+    </div>
+</div>
+{% endblock %}

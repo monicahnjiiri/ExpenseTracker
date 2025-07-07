@@ -1,0 +1,7 @@
+pandas
+schedule
+flask
+flask-wtf
+wtforms
+werkzeug
+gunicorn

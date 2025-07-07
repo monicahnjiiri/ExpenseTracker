@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2 style="text-align: center; margin-bottom: 30px;">⚙️ Account Settings</h2>
+    
+    <form method="POST" style="max-width: 500px; margin: 0 auto;">
+        <div class="form-group">
+            <label for="budget">💰 Monthly Budget ($):</label>
+            <input type="number" id="budget" name="budget" step="0.01" min="0" value="{{ budget }}" required>
+            <small style="color: #666;">You'll get alerts when your spending exceeds this amount</small>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" class="btn btn-success">💾 Save Settings</button>
+            <a href="{{ url_for('dashboard') }}" class="btn">↩️ Back to Dashboard</a>
+        </div>
+    </form>
+</div>
+
+<div class="card">
+    <h3 style="text-align: center; margin-bottom: 20px;">🔔 Email Alert Settings</h3>
+    <div style="text-align: center;">
+        <p>Your automated alerts are sent to: <strong>{{ session.user_email }}</strong></p>
+        <p style="margin: 15px 0; color: #666;">
+            📧 Weekly summaries: Every Sunday at 8:00 PM<br>
+            📊 Monthly reports: 1st of each month at 9:00 AM
+        </p>
+        <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="color: #2e7d32;">✅ Automated alerts are active!</p>
+            <small>Just keep adding your expenses and income - we'll handle the rest!</small>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3 style="text-align: center; margin-bottom: 20px;">📊 Account Summary</h3>
+    <div style="text-align: center;">
+        <p><strong>Account:</strong> {{ session.user_name }}</p>
+        <p><strong>Email:</strong> {{ session.user_email }}</p>
+        <p><strong>Current Budget:</strong> ${{ "%.2f"|format(budget) }}</p>
+    </div>
+</div>
+{% endblock %}

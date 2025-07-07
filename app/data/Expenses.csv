@@ -1,0 +1,11 @@
+Date,Category,Amount,Description,Payment_Method,Vendor
+7/1/2025,Food & Dining,25.5,Coffee meeting,Credit Card,Starbucks
+7/1/2025,Transportation,45,Gas,Debit Card,Shell
+7/1/2025,Business,120,Software license,Credit Card,Adobe
+7/2/2025,Groceries,67.8,Weekly shopping,Credit Card,Safeway
+7/2/2025,Entertainment,18.99,Movie tickets,Credit Card,AMC
+7/2/2025,Business,250,Conference ticket,Credit Card,TechConf
+7/3/2025,Food & Dining,35.75,Business lunch,Credit Card,Restaurant
+7/3/2025,Transportation,65,Uber rides,Credit Card,Uber
+7/3/2025,Business,89.99,Office supplies,Credit Card,Staples
+7/4/2025,Food & Dining,42.3,Team dinner,Credit Card,Italian Bistro

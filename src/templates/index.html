@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div style="text-align: center;">
+        <h2>🎉 Welcome to ExpenseTracker!</h2>
+        <p>Take control of your finances with automated tracking and smart alerts.</p>
+        
+        <div style="margin: 30px 0;">
+            <h3>✨ Features:</h3>
+            <ul style="text-align: left; max-width: 500px; margin: 20px auto;">
+                <li>📱 Easy expense and income tracking</li>
+                <li>📊 Real-time financial dashboard</li>
+                <li>📧 Automated weekly & monthly alerts</li>
+                <li>💡 Smart budget warnings</li>
+                <li>🔒 Secure personal data</li>
+            </ul>
+        </div>
+        
+        <div style="margin: 30px 0;">
+            <a href="{{ url_for('register') }}" class="btn btn-success">🚀 Get Started - Register</a>
+            <a href="{{ url_for('login') }}" class="btn btn-info">🔑 Login</a>
+        </div>
+        
+        <div style="margin-top: 40px; color: #666;">
+            <p><em>Start tracking your expenses today and get automated insights delivered to your inbox!</em></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
