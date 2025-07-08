@@ -155,7 +155,8 @@ def dashboard():
     # Get user budget
     cursor = conn.cursor()
     cursor.execute('SELECT budget FROM users WHERE id = ?', (user_id,))
-    budget = cursor.fetchone()[0]
+    result = cursor.fetchone()
+    budget = result[0] if result else 0.0
     conn.close()
     
     # Calculate totals
