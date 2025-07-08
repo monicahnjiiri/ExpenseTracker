@@ -256,9 +256,14 @@ def settings():
     conn.close()
     
     return render_template('settings.html', budget=budget)
+    
+@app.route('/init-db')
+def trigger_db_init():
+    init_db()
+    return "Database initialized successfully!"
 
 if __name__ == '__main__':
     init_db()
-    print("🚀 ExpenseTracker Multi-User App Starting...")
-    print("📱 Open your browser to: http://localhost:5000")
+    print(" ExpenseTracker Multi-User App Starting...")
+    print("Open your browser to: http://localhost:5000")
     app.run(debug=True)
